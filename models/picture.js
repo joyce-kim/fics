@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const pictureSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, required: true },
-  tag: { type: String, required: true },
+  tags: { type: String, required: true },
   img: { data: Buffer, contentType: String },
 }, { _id: false });
 
