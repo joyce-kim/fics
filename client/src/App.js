@@ -5,19 +5,14 @@ import UploadPage from "./pages/Upload";
 import Header from "./components/Header"
 import Searchbar from "./components/Searchbar"
 import Searchresults from "./components/Searchresults"
+import Footer from "./components/Footer"
 
 const App = () =>
-  // <Router>
     <div>
       <Header />
       <Searchbar />
       <Searchresults />
-      {/* <Switch>
-        <Route exact path="/" component={ExplorePage} />
-        <Route exact path="/explore" component={ExplorePage} />
-        <Route exact path="/upload" component={UploadPage} />
-      </Switch> */}
+      <Footer />
     </div>
-  // </Router>;
 
 export default App;

@@ -10,12 +10,11 @@ class Searchbar extends Component {
   }
   render() {
     return (
-      <div>
-      <form className="example" style={{margin:'auto',maxWidth:'300px'}}>
-  <input type="text" placeholder="Search.." name="search2"/>
-  <button type="submit"><i className="fa fa-search"/></button>
-</form>
-
+      <div style={{marginBottom: '20px'}}>
+        <form className="example" style={{margin:'auto',maxWidth:'300px'}}>
+          <input type="text" placeholder="Search.." name="search2"/>
+          <button type="submit"><i className="fa fa-search"/></button>
+        </form>
       </div>
     );
   }

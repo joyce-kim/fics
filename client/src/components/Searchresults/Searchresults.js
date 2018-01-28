@@ -23,10 +23,12 @@ class Searchresults extends Component {
   }
   render() {
     const imgList = this.state.images.map((image, index) => (
-        <img src={image} key={index} />
+      <div className='food' key={index} >
+        <img src={image} />
+      </div>
       ));
     return (
-      <div>
+      <div className='food-list'>
         {imgList}
       </div>
     );
