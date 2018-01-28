@@ -23,6 +23,9 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
-    "react-router-dom": "^4.2.2"
+    "react-dropzone": "^4.2.7",
+    "react-router-dom": "^4.2.2",
+    "sha1": "^1.1.1",
+    "superagent": "^3.8.2"
   }
 }
