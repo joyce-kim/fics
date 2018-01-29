@@ -1,10 +1,7 @@
 import axios from "axios";
-import filterParams from "./filterParams";
 
 export default {
-  getFood: function (params) {
-    return axios.get("/api/food", {
-      params: filterParams(params)
-    });
+  getFood: function (param) {
+    return axios.get(`/api/f/find?food=${param}`);
   }
 };

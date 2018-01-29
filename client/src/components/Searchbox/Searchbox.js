@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Searchbox.css';
 import Searchbar from "../Searchbar"
 import Searchresults from "../Searchresults"
+import API from "../../utils/API"
 
 class Searchbox extends Component{
   constructor(props){
@@ -10,6 +11,9 @@ class Searchbox extends Component{
       searchTerm : ''
     }
     this.handleSearchEvent = this.handleSearchEvent.bind(this);
+  }
+  componentDidUpdate(){
+    API.getFood(this.state.searchTerm);
   }
   handleSearchEvent(e){
     console.log(e)
