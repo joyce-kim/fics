@@ -1,8 +1,7 @@
 const router = require("express").Router();
-const foods = require("../../controllers/googleFoodController");
+const foods = require("../../controllers/foodController");
 
-router
-  .route("/")
+router.route("/find")
   .get(foods.findFoods)
 
 module.exports = router;

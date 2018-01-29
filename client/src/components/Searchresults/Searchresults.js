@@ -22,7 +22,8 @@ class Searchresults extends Component {
     }
   }
   render() {
-    const imgList = this.state.images.map((image, index) => (
+    const {images} = this.state;
+    const imgList = images.map((image, index) => (
       <div className='food' key={index} >
         <img src={image} />
       </div>
