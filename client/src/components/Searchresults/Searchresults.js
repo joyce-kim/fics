@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Image from "../Image"
 import './Searchresults.css';
 
 class Searchresults extends Component {
@@ -11,9 +12,7 @@ class Searchresults extends Component {
   render() {
     const {images} = this.props;
     const imgList = images.map((image, index) => (
-      <div className='food' key={image.id} onClick={()=>{alert('clicked')}}>
-        <img src={image.previewURL} />
-      </div>
+        <Image id={image.id} src={image.previewURL} key={index} />
       ));
     return (
       <div className='food-list'>

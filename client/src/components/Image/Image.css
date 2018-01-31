@@ -1,9 +1,3 @@
-.food-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .food {
   width: 20%;
   max-height: 180px;
@@ -16,10 +10,4 @@
     min-height: 17vw;
     max-width:17vw;
     min-width: 17vw;
-}
-
-@media (max-width: 580px) {
-  .food-list {
-    display: block;
-  }
 }
