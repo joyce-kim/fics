@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import Comments from '../../components/Comments'
 
 class ExplorePage extends Component {
   render() {
     return (
-      <h1>This is where you explore other food items through search and see their reviews</h1>
+    	<div>
+	      <Comments/>
+	    </div>
     );
   }
 }
