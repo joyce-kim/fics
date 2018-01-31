@@ -1,0 +1,13 @@
+.food {
+  width: 20%;
+  max-height: 180px;
+  min-width: 120px;
+  margin-bottom: 35px
+}
+
+.food>img {
+   max-height: 17vw;
+    min-height: 17vw;
+    max-width:17vw;
+    min-width: 17vw;
+}
