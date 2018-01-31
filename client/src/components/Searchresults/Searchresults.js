@@ -11,7 +11,7 @@ class Searchresults extends Component {
   render() {
     const {images} = this.props;
     const imgList = images.map((image, index) => (
-      <div className='food' key={image.id} onClick={()=>{}}>
+      <div className='food' key={image.id} onClick={()=>{alert('clicked')}}>
         <img src={image.previewURL} />
       </div>
       ));

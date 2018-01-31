@@ -8,12 +8,17 @@
   width: 20%;
   max-height: 180px;
   min-width: 120px;
-  border: 1px solid rgba(160,160,160,0.2);
+  margin-bottom: 35px
+  
 }
 
 .food>img {
-  width: 100%;
-  height: auto;
+   max-height: 17vw;
+    min-height: 17vw;
+    max-width:17vw;
+    min-width: 17vw;
+
+    
 }
 
 @media (max-width: 580px) {
