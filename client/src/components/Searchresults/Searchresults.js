@@ -8,17 +8,10 @@ class Searchresults extends Component {
       images : this.props.images
     }
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if(this.props != nextProps) {
-  //     this.setState({
-  //       images: nextProps.images
-  //     });
-  //   }
-  // }
   render() {
     const {images} = this.props;
     const imgList = images.map((image, index) => (
-      <div className='food' key={index} >
+      <div className='food' key={image.id} onClick={()=>{}}>
         <img src={image.previewURL} />
       </div>
       ));
