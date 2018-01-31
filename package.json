@@ -21,6 +21,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "cloudinary-core": "^2.4.0",
+    "cloudinary-react": "^1.0.6",
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
     "react-dropzone": "^4.2.7",

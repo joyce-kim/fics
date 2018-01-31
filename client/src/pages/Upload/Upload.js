@@ -12,7 +12,7 @@ class UploadPage extends Component {
     };
   }
   
-  uploadFile(files){
+  uploadFile(files) {
     console.log('uploadFile: ');
     const image = files[0];
 
@@ -40,14 +40,14 @@ class UploadPage extends Component {
       uploadRequest.field(key, params[key])
     });
 
-    uploadRequest.end((err, resp) => {
+    uploadRequest.end((err, res) => {
       if (err){
         alert(err);
         return;
       }
 
-      console.log("UPLOAD COMPLETE: " + JSON.stringify(resp.body));
-      const uploaded = resp.body;
+      console.log("UPLOAD COMPLETE: " + JSON.stringify(res.body));
+      const uploaded = res.body;
 
       let updatedImages = Object.assign([], this.state.images);
       updatedImages.push(uploaded);
@@ -56,8 +56,12 @@ class UploadPage extends Component {
         images: updatedImages
       })
     })
+  };
 
-  }
+  // showImages() {
+  //   var fetchURL = "https://res.cloudinary.com/" + cloudName + "/image/list/.json" + ;
+
+  // }
 
   render() {
 
