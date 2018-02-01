@@ -26,17 +26,14 @@
     "express": "^4.15.4",
     "express-g": "^1.0.9",
     "mongoose": "^4.11.7",
-<<<<<<< HEAD
     "react-dropzone": "^4.2.7",
     "react-router-dom": "^4.2.2",
     "sha1": "^1.1.1",
-    "superagent": "^3.8.2"
-=======
+    "superagent": "^3.8.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.0"
->>>>>>> fce65b6baf727364995c66088bf9b6fdb1e155fb
   }
 }

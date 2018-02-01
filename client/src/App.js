@@ -9,11 +9,20 @@ import Searchbar from "./components/Searchbar"
 import Searchresults from "./components/Searchresults"
 import Footer from "./components/Footer"
 
+import ParwizPage from "./pages/ParwizPage.js";
+
 const App = () =>
-    <div>
-      <Header />
-      <Searchbox />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={ParwizPage} />
+          <Route exact path="/explore" component={ParwizPage} />
+          <Route exact path="/upload" component={UploadPage} />
+        </Switch>
+      </div>
+    </Router>;
+
 
 export default App;
+
+    
