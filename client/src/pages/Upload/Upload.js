@@ -11,6 +11,16 @@ class UploadPage extends Component {
       images: []
     };
   }
+
+  getFiles() { 
+    console.log('clicked');
+    let request = superagent.get('/api/images');
+    request.end(function(err, res){
+      console.log(err, res);
+    });
+
+
+  }
   
   uploadFile(files) {
     console.log('uploadFile: ');
@@ -27,6 +37,7 @@ class UploadPage extends Component {
     const signature = sha1(paramsStr);
 
     const params = {
+      'Content Type' : 'text/html',
       'api_key': '714671874936964',
       'timestamp': timestamp,
       'upload_preset': uploadPreset,
@@ -51,24 +62,33 @@ class UploadPage extends Component {
 
       let updatedImages = Object.assign([], this.state.images);
       updatedImages.push(uploaded);
-
+      
       this.setState({
         images: updatedImages
-      })
-    })
-  };
+      });
+    });
+
+  //   superagent.post('/api/images').send(params).end((err, res) => {
+  //     if (err) {
+  //       alert(err);
+  //       return;
+  //     }
+
+  //     console.log(res);
+  //   })
+  // };
 
   // showImages() {
   //   var fetchURL = "https://res.cloudinary.com/" + cloudName + "/image/list/.json" + ;
 
-  // }
+  }
 
   render() {
 
     const list = this.state.images.map((image, i) => {
       return (
         <li key={i}>
-          <img style={{width:72}} src={image.secure_url} /> 
+          <img style={{width:140}} src={image.secure_url} /> 
         </li>
       )
     })
@@ -82,6 +102,9 @@ class UploadPage extends Component {
         <ol>
           {list}
         </ol>
+        <button onClick={this.getFiles.bind(this)}>click me!</button>
+          {this.state.images}
+
       </div>
     );
   }
