@@ -11,7 +11,7 @@ class CommentBox extends Component {
 	submitComment(event){
 		let pictureId = this.props.pictureId;
 		console.log("text");
-		axios.post('/images/' + pictureId + '/comment', {
+		axios.post('/api/images/' + pictureId + '/comment', {
 			"commentText" : this.state.commentText
 		});
 	}
