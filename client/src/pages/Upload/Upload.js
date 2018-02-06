@@ -3,24 +3,35 @@ import Dropzone from 'react-dropzone';
 import sha1 from 'sha1';
 import superagent from 'superagent';
 
+// import Imagefeed from '../../components/Imagefeed';
+
 class UploadPage extends Component {
+  //   constructor(props){
+  //     super(props);
 
-  constructor() {
-    super();
-    this.state = {
-      images: []
-    };
-  }
+  //       this.state = {
+  //     imagesData: []
+  //   }
 
-  getFiles() { 
-    console.log('clicked');
-    let request = superagent.get('/api/images');
-    request.end(function(err, res){
-      console.log(err, res);
-    });
+  // }
+  
 
+  // componentWillMount() { 
+  //   console.log('componentdidmount');
 
-  }
+  //   let request = superagent.get('/api/images');
+  //   console.log(request);
+
+  //   request.end(function(err, res){
+  //     console.log(err, res);
+
+  //     const imagesData = res.body;
+
+  //     this.setState({ imagesData: imagesData});
+  //     console.log(this.state);
+
+  //   }.bind(this));
+  // }
   
   uploadFile(files) {
     console.log('uploadFile: ');
@@ -44,15 +55,19 @@ class UploadPage extends Component {
       'signature': signature
     };
 
+    // initialize the post request to cloudinary
     let uploadRequest = superagent.post(url);
     uploadRequest.attach('file', image);
 
+    // packaging params into the post request
     Object.keys(params).forEach((key) => {
       uploadRequest.field(key, params[key])
     });
-
+    
+    // make the request to cloudinary; 
+    // then send our server the json response to push into our local storage
     uploadRequest.end((err, res) => {
-      if (err){
+      if (err) {
         alert(err);
         return;
       }
@@ -60,38 +75,29 @@ class UploadPage extends Component {
       console.log("UPLOAD COMPLETE: " + JSON.stringify(res.body));
       const uploaded = res.body;
 
-      let updatedImages = Object.assign([], this.state.images);
-      updatedImages.push(uploaded);
-      
-      this.setState({
-        images: updatedImages
+      superagent.post('/api/images').send(uploaded).end((err, res) => {
+        if (err) {
+          alert(err);
+          return;
+        }
+
+        console.log(res);
       });
+
+      alert("Upload Complete!");
     });
-
-  //   superagent.post('/api/images').send(params).end((err, res) => {
-  //     if (err) {
-  //       alert(err);
-  //       return;
-  //     }
-
-  //     console.log(res);
-  //   })
-  // };
-
-  // showImages() {
-  //   var fetchURL = "https://res.cloudinary.com/" + cloudName + "/image/list/.json" + ;
-
-  }
+  }   
 
   render() {
 
-    const list = this.state.images.map((image, i) => {
-      return (
-        <li key={i}>
-          <img style={{width:140}} src={image.secure_url} /> 
-        </li>
-      )
-    })
+    // const list = this.imagesData.map((image, i) => {
+    //   return (
+    //     <li key={i}>
+    //       <img style={{width:200}} src={image.url} />
+    //     </li>
+    //   );
+    // });
+
 
     return (
       <div>
@@ -99,11 +105,6 @@ class UploadPage extends Component {
         <Dropzone 
           onDrop={this.uploadFile.bind(this)}
         />
-        <ol>
-          {list}
-        </ol>
-        <button onClick={this.getFiles.bind(this)}>click me!</button>
-          {this.state.images}
 
       </div>
     );
@@ -111,3 +112,6 @@ class UploadPage extends Component {
 }
 
 export default UploadPage;
+
+// <button onClick={this.getFiles.bind(this)}>click me!</button>
+//           {this.state.images}

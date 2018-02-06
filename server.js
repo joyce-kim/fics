@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+var imagesData = require("./data/imagesData.js");
+
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -15,10 +17,16 @@ if (process.env.NODE_ENV === "production") {
 
 //app.use(routes);
 
-app.get('/api/images', function(req, resp){
-	console.log("HEREEEEE");
-	resp.send(200);
+app.get('/api/images', function(req, res){
+	res.json(imagesData);
 });
+
+app.post('/api/images', function(req, res){
+	imagesData.push(req.body);
+})
+
+	// resp.send(200);
+
    //  const cloudName = 'ddn00kubl';
 
    //  const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/resources/search';
@@ -52,8 +60,8 @@ app.get('/api/images', function(req, resp){
    //    }
 
    //   console.log("UPLOAD COMPLETE: " + JSON.stringify(res.body));
-   //   resp.send({data: resp.body});
-      // const uploaded = res.body;
+   //   res.send({data: res.body});
+   //    const uploaded = res.body;
 
       // let updatedImages = Object.assign([], this.state.images);
       // updatedImages.push(uploaded);
@@ -61,7 +69,9 @@ app.get('/api/images', function(req, resp){
       // this.setState({
       //   images: updatedImages
       // })
-    // }
+//     });
+// });
+
 
 // Set up promises with mongoose
 //mongoose.Promise = global.Promise;
