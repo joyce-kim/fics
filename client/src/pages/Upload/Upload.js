@@ -6,32 +6,22 @@ import superagent from 'superagent';
 // import Imagefeed from '../../components/Imagefeed';
 
 class UploadPage extends Component {
-  //   constructor(props){
-  //     super(props);
+  constructor(props){
+    super(props);
 
-  //       this.state = {
-  //     imagesData: []
-  //   }
+    this.state = {
+      restaurantValue: '',
+      dishValue: '',
+      typeValue: ''
+    }
 
-  // }
-  
+    this.handleChange = this.handleChange.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
+  }
 
-  // componentWillMount() { 
-  //   console.log('componentdidmount');
-
-  //   let request = superagent.get('/api/images');
-  //   console.log(request);
-
-  //   request.end(function(err, res){
-  //     console.log(err, res);
-
-  //     const imagesData = res.body;
-
-  //     this.setState({ imagesData: imagesData});
-  //     console.log(this.state);
-
-  //   }.bind(this));
-  // }
+  handleChange = (name, event) => {
+    this.setState({...this.state, [name]: event.target.value});
+  };
   
   uploadFile(files) {
     console.log('uploadFile: ');
@@ -65,7 +55,7 @@ class UploadPage extends Component {
     });
     
     // make the request to cloudinary; 
-    // then send our server the json response to push into our local storage
+    // then send our server the json response to push into mongo db
     uploadRequest.end((err, res) => {
       if (err) {
         alert(err);
@@ -73,7 +63,17 @@ class UploadPage extends Component {
       }
 
       console.log("UPLOAD COMPLETE: " + JSON.stringify(res.body));
-      const uploaded = res.body;
+
+      const uploaded = {
+        public_id: res.body.public_id,
+        secure_url: res.body.secure_url,
+        timestamp: res.body.created_at,
+        restaurantname: this.state.restaurantValue,
+        dishname: this.state.dishValue,
+        foodtype: this.state.typeValue
+      }
+
+      console.log(uploaded);
 
       superagent.post('/api/images').send(uploaded).end((err, res) => {
         if (err) {
@@ -90,28 +90,31 @@ class UploadPage extends Component {
 
   render() {
 
-    // const list = this.imagesData.map((image, i) => {
-    //   return (
-    //     <li key={i}>
-    //       <img style={{width:200}} src={image.url} />
-    //     </li>
-    //   );
-    // });
-
-
     return (
       <div>
-        <h1>This is where you upload food photos and their review</h1>
+        <h1>Upload Your Food Image Here!</h1>
+        <form>
+          <label>
+            Restaurant Name:
+              <input type="text" value={this.state.restaurantValue} onChange={this.handleChange.bind(this,'restaurantValue')} />
+          </label>
+           <label>
+            Name of Dish:
+              <input type="text" value={this.state.dishValue} onChange={this.handleChange.bind(this,'dishValue')} />
+          </label>
+          <label>
+            Food Type:
+              <input type="text" value={this.state.typeValue} onChange={this.handleChange.bind(this,'typeValue')}  />
+          </label>
+        </form>
+        <label>Click or Drag & Drop Photo Here to Complete Submit</label>
         <Dropzone 
           onDrop={this.uploadFile.bind(this)}
         />
-
+        
       </div>
     );
   }
 }
 
 export default UploadPage;
-
-// <button onClick={this.getFiles.bind(this)}>click me!</button>
-//           {this.state.images}
