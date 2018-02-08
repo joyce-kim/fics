@@ -34,17 +34,16 @@ class ExplorePage extends Component {
 
      const list = this.state.imagesData.map((image, i) => {
       return (
-        <li key={i}>
+        <div key={i}>
           <img style={{width:200}} src={image.secure_url} />
-        </li>
+        </div>
       );
     });
 
 
     return (
     	<div>
-
-          <ul>{list}</ul>
+          {list}
 	    </div>
     );
   }
