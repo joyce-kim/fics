@@ -86,6 +86,8 @@ class UploadPage extends Component {
 
       alert("Upload Complete!");
     });
+
+    // clear text inputs after upload complete
   }   
 
   render() {

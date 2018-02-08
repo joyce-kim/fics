@@ -5,12 +5,10 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-var imagesData = require("./data/imagesData.js");
-// var db = require("./models");
-
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -28,15 +26,9 @@ mongoose.connect(
   }
 );
 
-// express.post("/api/images", function(req, res) {
-//   db.Image
-//     .create(req.body)
-//     .catch(function(err) {
-//       res.json(err);
-//     });
-// });
-
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+

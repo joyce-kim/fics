@@ -1,5 +1,5 @@
 const db = require("../models");
-
+const mongoose = require('mongoose');
 module.exports = {
   findAll: function(req, res) {
     db.Comment
@@ -15,11 +15,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+
+    var pictureID = req.params.pictureid;
+    var commentText = req.body.commentText;
+    var uniqueUID = new Date().getUTCMilliseconds();
     const comment = {
-      uid: req.params.id,
-      commentBody: req.params.commentBody,
-      pictureId: req.params.pictureId
+      _id: mongoose.Types.ObjectId(uniqueUID),
+      commentBody: commentText,
+      pictureId: pictureID
     };
+    
     db.Comment
       .create(comment)
       .then(data => res.json(data))
